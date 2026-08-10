@@ -5,7 +5,9 @@ const FRAME_WIDTH = 1080;
 const FRAME_HEIGHT = 1920;
 
 function frameUrl(index: number) {
-  return `/scroll-frames/ezgif-frame-${String(index + 1).padStart(3, "0")}.jpg`;
+  const baseUrl = import.meta.env.BASE_URL || "./";
+  const cleanBase = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
+  return `${cleanBase}scroll-frames/ezgif-frame-${String(index + 1).padStart(3, "0")}.jpg`;
 }
 
 function clamp(value: number, min: number, max: number) {
