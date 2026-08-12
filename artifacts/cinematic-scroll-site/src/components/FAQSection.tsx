@@ -367,22 +367,27 @@ export default function FAQSection({ t }: { t: Theme }) {
               exit={{ scale: 0.95, opacity: 0, y: 20 }}
               transition={{ duration: 0.2 }}
               className="w-full max-w-3xl max-h-[85vh] rounded-3xl p-6 sm:p-8 flex flex-col gap-5 border shadow-2xl overflow-hidden relative"
-              style={{ background: t.cardBg, borderColor: t.cardBorder }}
+              style={{
+                background: "rgba(30, 30, 40, 0.6)",
+                backdropFilter: "blur(24px)",
+                WebkitBackdropFilter: "blur(24px)",
+                border: "1px solid rgba(255, 255, 255, 0.15)",
+                boxShadow: "0 20px 50px -10px rgba(0, 0, 0, 0.85)"
+              }}
             >
               {/* Modal Header */}
-              <div className="flex items-center justify-between pb-4 border-b" style={{ borderColor: t.cardBorder }}>
+              <div className="flex items-center justify-between pb-4 border-b border-white/20">
                 <div>
-                  <h3 className="text-xl sm:text-2xl font-black" style={{ color: t.text }}>
+                  <h3 className="text-xl sm:text-2xl font-black text-white">
                     All Questions & Answers ({allFaqs.length})
                   </h3>
-                  <p className="text-xs font-semibold mt-1" style={{ color: t.subtext }}>
+                  <p className="text-xs font-semibold mt-1 text-white/70">
                     Browse all asked questions and community answers.
                   </p>
                 </div>
                 <button
                   onClick={() => setIsAllFaqsOpen(false)}
-                  className="w-10 h-10 rounded-full flex items-center justify-center font-bold transition-all hover:bg-black/10 cursor-pointer"
-                  style={{ color: t.subtext }}
+                  className="w-10 h-10 rounded-full flex items-center justify-center font-bold transition-all hover:bg-white/10 cursor-pointer text-white/70 hover:text-white"
                 >
                   ✕
                 </button>
@@ -395,8 +400,8 @@ export default function FAQSection({ t }: { t: Theme }) {
                   value={faqSearch}
                   onChange={(e) => setFaqSearch(e.target.value)}
                   placeholder="Search questions or answers..."
-                  className="w-full px-5 py-3 rounded-xl text-sm outline-none border font-medium"
-                  style={{ background: t.inputBg, borderColor: t.cardBorder, color: t.text }}
+                  className="w-full px-5 py-3 rounded-xl text-sm outline-none border font-medium text-white placeholder-white/50"
+                  style={{ background: "rgba(255,255,255,0.05)", borderColor: "rgba(255,255,255,0.15)" }}
                 />
                 {faqSearch && (
                   <button
@@ -420,8 +425,10 @@ export default function FAQSection({ t }: { t: Theme }) {
                         key={faq.id}
                         className="rounded-2xl overflow-hidden transition-all duration-300 relative border"
                         style={{
-                          background: t.cardBg,
-                          borderColor: isOpen ? "rgba(22, 207, 131, 0.4)" : t.cardBorder,
+                          background: "rgba(255, 255, 255, 0.05)",
+                          backdropFilter: "blur(12px)",
+                          WebkitBackdropFilter: "blur(12px)",
+                          borderColor: isOpen ? "rgba(22, 207, 131, 0.4)" : "rgba(255, 255, 255, 0.1)",
                           boxShadow: isOpen ? "0 4px 20px -5px rgba(22, 207, 131, 0.25)" : "none"
                         }}
                       >
@@ -429,14 +436,14 @@ export default function FAQSection({ t }: { t: Theme }) {
                           onClick={() => setOpenId(isOpen ? null : faq.id)}
                           className="w-full px-5 py-4 flex items-center justify-between gap-4 text-left cursor-pointer"
                         >
-                          <span className="font-bold text-sm sm:text-base pr-2" style={{ color: isOpen ? "#16CF83" : t.text }}>
+                          <span className="font-bold text-sm sm:text-base pr-2 transition-colors duration-300" style={{ color: isOpen ? "#16CF83" : "white" }}>
                             {faq.q}
                           </span>
                           <div
                             className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-transform duration-300"
                             style={{
                               background: isOpen ? "rgba(22, 207, 131, 0.15)" : "rgba(22, 207, 131, 0.05)",
-                              color: isOpen ? "#16CF83" : t.subtext,
+                              color: isOpen ? "#16CF83" : "rgba(255,255,255,0.7)",
                               transform: isOpen ? "rotate(180deg)" : "none"
                             }}
                           >
@@ -453,8 +460,8 @@ export default function FAQSection({ t }: { t: Theme }) {
                               exit={{ height: 0, opacity: 0 }}
                               transition={{ duration: 0.3 }}
                             >
-                              <div className="px-5 pb-5 pt-1 border-t" style={{ borderColor: t.cardBorder }}>
-                                <p className="text-xs sm:text-sm font-medium leading-relaxed" style={{ color: t.subtext }}>
+                              <div className="px-5 pb-5 pt-1 border-t border-white/10">
+                                <p className="text-xs sm:text-sm font-medium leading-relaxed text-white/70">
                                   {faq.a}
                                 </p>
                                 {faq.imageUrl && (
@@ -463,7 +470,7 @@ export default function FAQSection({ t }: { t: Theme }) {
                                       src={faq.imageUrl}
                                       alt="FAQ Attachment"
                                       className="max-w-full sm:max-w-xs h-auto rounded-xl cursor-pointer hover:opacity-80 transition-opacity"
-                                      style={{ maxHeight: "250px", objectFit: "contain", border: `1px solid ${t.cardBorder}` }}
+                                      style={{ maxHeight: "250px", objectFit: "contain", border: "1px solid rgba(255,255,255,0.1)" }}
                                       onClick={(e) => { e.stopPropagation(); setFullscreenImage(faq.imageUrl); }}
                                     />
                                   </div>

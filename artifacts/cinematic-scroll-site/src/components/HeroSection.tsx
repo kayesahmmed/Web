@@ -468,9 +468,11 @@ export function HeroMockPanel({ isDark }: { isDark: boolean }) {
         
         {/* Left Column: Sidebar & Hub Navigation with Header Logo - Floating Glass Card */}
         <div 
-          className="w-full md:w-64 shrink-0 flex flex-col gap-4 relative z-10 p-5 rounded-[24px] backdrop-blur-[12px] transition-all duration-700 shadow-[0_8px_32px_0_rgba(0,0,0,0.15)] border border-[rgba(255,255,255,0.2)]"
+          className="w-full md:w-64 shrink-0 flex flex-col gap-4 relative z-10 p-5 rounded-[24px] mt-6 md:mt-24 transition-all duration-700 shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.15)] border border-[rgba(255,255,255,0.1)]"
           style={{
-            background: "rgba(255, 255, 255, 0.12)",
+            background: "rgba(255, 255, 255, 0.05)",
+            backdropFilter: "blur(24px)",
+            WebkitBackdropFilter: "blur(24px)",
           }}
         >
           
@@ -485,7 +487,7 @@ export function HeroMockPanel({ isDark }: { isDark: boolean }) {
               />
             ) : (
               <div className="flex flex-col">
-                <span className="font-['Plus_Jakarta_Sans',sans-serif] font-black text-lg tracking-tight flex items-center gap-1 text-white">
+                <span className="font-['Outfit',sans-serif] font-black text-xl tracking-tight flex items-center gap-1.5 text-white">
                   ModX Lab
                   <span className="w-3.5 h-3.5 rounded-full bg-[#16CF83]/20 flex items-center justify-center text-[#16CF83]">
                     <svg className="w-2 h-2" fill="currentColor" viewBox="0 0 20 20">
@@ -598,16 +600,16 @@ export function HeroMockPanel({ isDark }: { isDark: boolean }) {
             background: "rgba(255, 255, 255, 0.12)",
           }}
         >
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center mb-1">
             <div>
-              <h2 className="text-xl font-extrabold font-['Plus_Jakarta_Sans',sans-serif] tracking-tight flex items-center gap-2 text-white">
+              <h2 className="text-[22px] font-black font-['Orbitron',sans-serif] tracking-tight flex items-center gap-2 text-white">
                 <span>ModX Lab Hub</span>
-                <span className="text-[10px] font-bold text-[#00E5D1] bg-[#00E5D1]/15 px-2 py-0.5 rounded-full border border-[#00E5D1]/30">v4.5</span>
+                <span className="text-[10px] font-bold text-[#00E5D1] bg-[#00E5D1]/15 px-2 py-0.5 rounded-full border border-[#00E5D1]/30 uppercase tracking-widest">v4.5</span>
               </h2>
-              <p className="text-xs text-white/70">Official Mods, High-Speed CDN & YouTube Tutorials.</p>
+              <p className="text-xs text-white/70 font-medium mt-0.5">Official Mods, High-Speed CDN & YouTube Tutorials.</p>
             </div>
-            <div className={`hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-[10px] font-mono text-[#16CF83] ${
-              isDark ? "bg-white/5 border-white/10" : "bg-slate-100 border-slate-200"
+            <div className={`hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-[10px] font-bold tracking-wide text-[#16CF83] ${
+              isDark ? "bg-[#16CF83]/10 border-[#16CF83]/20" : "bg-slate-100 border-slate-200"
             }`}>
               <span className="w-1.5 h-1.5 rounded-full bg-[#16CF83] animate-ping" />
               <span>Direct Server Online</span>
@@ -632,8 +634,8 @@ export function HeroMockPanel({ isDark }: { isDark: boolean }) {
                 </span>
               </div>
               <div>
-                <h4 className="font-bold text-sm font-['Plus_Jakarta_Sans',sans-serif] text-white">APK Downloads</h4>
-                <p className="text-[11px] mt-0.5 line-clamp-1 text-white/70">Direct high-speed APK files</p>
+                <h4 className="font-bold text-sm font-['Outfit',sans-serif] tracking-wide text-white">APK Downloads</h4>
+                <p className="text-[11px] mt-0.5 line-clamp-1 text-white/70 font-medium">Direct high-speed APK files</p>
               </div>
             </div>
 
@@ -653,8 +655,8 @@ export function HeroMockPanel({ isDark }: { isDark: boolean }) {
                 </span>
               </div>
               <div>
-                <h4 className="font-bold text-sm font-['Plus_Jakarta_Sans',sans-serif] text-white">User Reviews</h4>
-                <p className="text-[11px] mt-0.5 line-clamp-1 text-white/70">Community ratings & feedback</p>
+                <h4 className="font-bold text-sm font-['Outfit',sans-serif] tracking-wide text-white">User Reviews</h4>
+                <p className="text-[11px] mt-0.5 line-clamp-1 text-white/70 font-medium">Community ratings & feedback</p>
               </div>
             </div>
 
@@ -674,8 +676,8 @@ export function HeroMockPanel({ isDark }: { isDark: boolean }) {
                 </span>
               </div>
               <div>
-                <h4 className="font-bold text-sm font-['Plus_Jakarta_Sans',sans-serif] text-white">Anti-Ban</h4>
-                <p className="text-[11px] mt-0.5 line-clamp-1 text-white/70">Anti-ban protection & tools</p>
+                <h4 className="font-bold text-sm font-['Outfit',sans-serif] tracking-wide text-white">Anti-Ban</h4>
+                <p className="text-[11px] mt-0.5 line-clamp-1 text-white/70 font-medium">Anti-ban protection & tools</p>
               </div>
             </div>
 
@@ -695,8 +697,8 @@ export function HeroMockPanel({ isDark }: { isDark: boolean }) {
                 </span>
               </div>
               <div>
-                <h4 className="font-bold text-sm font-['Plus_Jakarta_Sans',sans-serif] text-white">Community Q&A</h4>
-                <p className="text-[11px] mt-0.5 line-clamp-1 text-white/70">Ask questions & get answers</p>
+                <h4 className="font-bold text-sm font-['Outfit',sans-serif] tracking-wide text-white">Community Q&A</h4>
+                <p className="text-[11px] mt-0.5 line-clamp-1 text-white/70 font-medium">Ask questions & get answers</p>
               </div>
             </div>
           </div>
@@ -1021,8 +1023,8 @@ export default function HeroSection({ isDark, t }: { isDark: boolean; t: Theme }
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="font-['Plus_Jakarta_Sans',sans-serif] font-extrabold text-[24px] xs:text-[30px] sm:text-4xl lg:text-[56px] leading-[1.15] transition-colors duration-500 tracking-tight max-w-full flex flex-col md:flex-row items-center gap-4"
-            style={{ color: t.text, fontVariationSettings: '"opsz" 14, "wdth" 100' }}
+            className="font-['Orbitron',sans-serif] font-black text-[32px] xs:text-[40px] sm:text-[48px] lg:text-[64px] leading-[1.05] transition-colors duration-500 tracking-tight max-w-full flex flex-col md:flex-row items-center gap-3 lg:gap-5"
+            style={{ color: "white" }}
           >
             <span>Welcome to</span>
             <span className="relative inline-block transition-all duration-500 whitespace-nowrap">
@@ -1034,8 +1036,7 @@ export default function HeroSection({ isDark, t }: { isDark: boolean; t: Theme }
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="font-['Plus_Jakarta_Sans',sans-serif] text-[16px] sm:text-[19px] lg:text-[21px] leading-relaxed transition-colors duration-500 max-w-2xl text-center"
-            style={{ color: t.subtext }}
+            className="font-['Plus_Jakarta_Sans',sans-serif] text-[16px] sm:text-[18px] lg:text-[20px] leading-relaxed transition-colors duration-500 max-w-2xl text-center text-white/80 font-medium"
           >
             The official website of the ModX Lab YouTube Channel. Access our exclusive video tutorial resources, premium apps, and files. Join our community to ask questions, explore features, and share your valuable reviews!
           </motion.p>
@@ -1059,9 +1060,13 @@ export default function HeroSection({ isDark, t }: { isDark: boolean; t: Theme }
                   }
                 }
               }}
-              className="px-8 py-4 rounded-full font-['Plus_Jakarta_Sans',sans-serif] font-semibold text-white text-lg capitalize transition-all hover:brightness-110 cursor-pointer shadow-xl active:scale-95"
-              style={{ background: "#7D52FD", boxShadow: "0 8px 25px -4px rgba(125,82,253,0.5), inset 0 2px 4px rgba(255,255,255,0.2)", color: "white" }}
+              className="px-8 py-3.5 rounded-full font-['Orbitron',sans-serif] font-bold text-white text-sm sm:text-base tracking-wider uppercase transition-all hover:brightness-110 cursor-pointer shadow-2xl active:scale-95 border border-[#00E5D1]/50 relative overflow-hidden group flex items-center justify-center gap-2"
+              style={{ background: "linear-gradient(135deg, rgba(125,82,253,0.8), rgba(0,229,209,0.8))", backdropFilter: "blur(12px)" }}
             >
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
               Contact me
             </motion.button>
 
