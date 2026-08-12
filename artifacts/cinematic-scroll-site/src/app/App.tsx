@@ -235,14 +235,13 @@ export default function App() {
 
   const appContent = (
     <div
-      className="relative min-h-screen w-[980px] mx-auto transition-colors duration-500"
+      className="relative min-h-screen w-full max-w-[980px] mx-auto transition-colors duration-500"
       style={{ background: "transparent" }}
     >
       <ScrollFrameSequence />
 
-      {/* Floating Ambient Particles Background */}
+      {/* Background layer */}
       <Suspense fallback={null}>
-        <ParticlesBackground isDark={isDark} />
       </Suspense>
 
       {/* Subtle Noise Texture Overlay */}
