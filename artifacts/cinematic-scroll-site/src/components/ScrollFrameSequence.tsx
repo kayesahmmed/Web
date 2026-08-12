@@ -1,12 +1,15 @@
 import { useEffect, useRef } from "react";
 
-const FRAME_COUNT = 79;
+const FRAME_COUNT = 44;
 const FRAME_WIDTH = 1080;
 const FRAME_HEIGHT = 1920;
 
 function frameUrl(index: number) {
-  const baseUrl = import.meta.env.BASE_URL || "./";
-  const cleanBase = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
+  let base = import.meta.env.BASE_URL || "/";
+  if (base === "./" || base === "") {
+    base = window.location.pathname.includes("/Web") ? "/Web/" : "/";
+  }
+  const cleanBase = base.endsWith("/") ? base : `${base}/`;
   return `${cleanBase}scroll-frames/ezgif-frame-${String(index + 1).padStart(3, "0")}.jpg`;
 }
 
@@ -24,6 +27,7 @@ export default function ScrollFrameSequence() {
   const reducedMotionRef = useRef(false);
 
   useEffect(() => {
+    let isMounted = true;
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -67,7 +71,7 @@ export default function ScrollFrameSequence() {
         const imgWidth = image.naturalWidth || FRAME_WIDTH;
         const imgHeight = image.naturalHeight || FRAME_HEIGHT;
 
-        const scale = Math.min(
+        const scale = Math.max(
           viewportWidth / imgWidth,
           viewportHeight / imgHeight,
         );
@@ -125,7 +129,10 @@ export default function ScrollFrameSequence() {
           if (index === 0) drawFrame();
           resolve();
         };
-        image.onerror = () => resolve();
+        image.onerror = (e) => {
+          console.error(`Failed to load frame ${index}:`, image.src);
+          resolve();
+        };
         image.src = frameUrl(index);
       });
 
@@ -135,15 +142,43 @@ export default function ScrollFrameSequence() {
     window.addEventListener("scroll", updateTargetFrame, { passive: true });
     mediaQuery.addEventListener("change", handleMotionPreferenceChange);
 
-    void loadFrame(0).then(() => {
-      for (let index = 1; index < FRAME_COUNT; index += 1) {
-        void loadFrame(index);
+    void loadFrame(0).then(async () => {
+      for (let i = 1; i < FRAME_COUNT; i++) {
+        if (!isMounted) break;
+        let retries = 3;
+        while (retries > 0) {
+          try {
+            await new Promise<void>((resolve, reject) => {
+              const image = new Image();
+              image.decoding = "async";
+              image.onload = () => {
+                frameImagesRef.current[i] = image;
+                resolve();
+              };
+              image.onerror = () => {
+                reject(new Error(`Failed to load frame ${i}`));
+              };
+              image.src = frameUrl(i);
+            });
+            break; // Success, move to next frame
+          } catch (e) {
+            retries--;
+            if (retries === 0) {
+              console.error(e);
+            } else {
+              // Wait a bit before retrying
+              await new Promise((r) => setTimeout(r, 200));
+              if (!isMounted) break;
+            }
+          }
+        }
       }
     });
 
     animationFrameRef.current = window.requestAnimationFrame(animate);
 
     return () => {
+      isMounted = false;
       window.removeEventListener("resize", resizeCanvas);
       window.removeEventListener("scroll", updateTargetFrame);
       mediaQuery.removeEventListener("change", handleMotionPreferenceChange);
@@ -156,20 +191,18 @@ export default function ScrollFrameSequence() {
   }, []);
 
   return (
-    <canvas
-      ref={canvasRef}
-      aria-hidden="true"
-      style={{
-        position: "fixed",
-        inset: 0,
-        zIndex: -1,
-        width: "100vw",
-        height: "100vh",
-        pointerEvents: "none",
-        objectFit: "cover",
-        opacity: 1,
-        filter: "none",
-      }}
-    />
+    <div className="fixed inset-0 z-0 pointer-events-none w-full h-full overflow-hidden">
+      <canvas
+        ref={canvasRef}
+        aria-hidden="true"
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          opacity: 1,
+          filter: "none",
+        }}
+      />
+    </div>
   );
 }
