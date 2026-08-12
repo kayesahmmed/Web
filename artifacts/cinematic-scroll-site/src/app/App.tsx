@@ -278,7 +278,7 @@ export default function App() {
         <Divider t={t} />
         
         <Suspense fallback={<div className="h-[400px]" />}>
-          <FeaturesSection isDark={isDark} t={t} />
+          <FeaturesSection />
         </Suspense>
         
         <Divider t={t} />
