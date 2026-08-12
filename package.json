@@ -4,9 +4,9 @@
   "license": "MIT",
   "scripts": {
     "dev": "npm run dev --workspace=@workspace/cinematic-scroll-site",
-    "build": "npm run typecheck && npm run build --workspaces --if-present",
+    "build": "npm run typecheck && npm run build --workspace=@workspace/api-server && npm run build --workspace=@workspace/cinematic-scroll-site",
     "typecheck:libs": "tsc --build",
-    "typecheck": "npm run typecheck:libs && npm run typecheck --workspaces --if-present"
+    "typecheck": "npm run typecheck:libs && npm run typecheck --workspace=@workspace/api-server && npm run typecheck --workspace=@workspace/cinematic-scroll-site && npm run typecheck --workspace=@workspace/mockup-sandbox"
   },
   "private": true,
   "engines": {
