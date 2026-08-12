@@ -9,6 +9,9 @@
     "typecheck": "npm run typecheck:libs && npm run typecheck --workspaces --if-present"
   },
   "private": true,
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "dependencies": {
     "@replit/connectors-sdk": "^0.4.1"
   },
