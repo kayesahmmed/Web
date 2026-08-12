@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 
-const FRAME_COUNT = 44;
-const FRAME_WIDTH = 1080;
-const FRAME_HEIGHT = 1920;
+const FRAME_COUNT = 208;   // ছিল 44
+const FRAME_WIDTH = 720;   // ছিল 1080
+const FRAME_HEIGHT = 1280;
 
 function frameUrl(index: number) {
   let base = import.meta.env.BASE_URL || "/";
