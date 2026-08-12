@@ -25,6 +25,8 @@ export default function ScrollFrameSequence() {
   const animationFrameRef = useRef<number | undefined>(undefined);
   const drawFrameRef = useRef<(() => void) | undefined>(undefined);
   const reducedMotionRef = useRef(false);
+  const lastDrawnFrameRef = useRef(-1);
+  const needsResizeRedrawRef = useRef(true);
 
   useEffect(() => {
     let isMounted = true;
@@ -49,7 +51,7 @@ export default function ScrollFrameSequence() {
       canvas.style.top = "0px";
       context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
       context.imageSmoothingEnabled = true;
-      context.imageSmoothingQuality = "high";
+      needsResizeRedrawRef.current = true;
       drawFrameRef.current?.();
     };
 
@@ -57,19 +59,48 @@ export default function ScrollFrameSequence() {
       const viewportWidth = window.innerWidth;
       const viewportHeight = window.innerHeight;
 
-      context.clearRect(0, 0, viewportWidth, viewportHeight);
-
       const frameIndex = clamp(
         Math.round(currentFrameRef.current),
         0,
         FRAME_COUNT - 1,
       );
-      const image =
-        frameImagesRef.current[frameIndex] || frameImagesRef.current[0];
 
-      if (image?.complete && image.naturalWidth > 0) {
-        const imgWidth = image.naturalWidth || FRAME_WIDTH;
-        const imgHeight = image.naturalHeight || FRAME_HEIGHT;
+      // PERFORMANCE FIX: Only redraw if the frame index actually changed or canvas resized
+      if (frameIndex === lastDrawnFrameRef.current && !needsResizeRedrawRef.current) {
+        return;
+      }
+
+      // Find the closest loaded frame (fallback to older frames if current isn't loaded)
+      let imageToDraw = frameImagesRef.current[frameIndex];
+      let drewFallback = false;
+      
+      if (!imageToDraw || !imageToDraw.complete) {
+         // try finding previous loaded frame to avoid blank flashes
+         for(let i = frameIndex - 1; i >= 0; i--) {
+            if (frameImagesRef.current[i]?.complete) {
+               imageToDraw = frameImagesRef.current[i];
+               drewFallback = true;
+               break;
+            }
+         }
+      }
+
+      // If STILL no image, try finding any loaded frame (like frame 0)
+      if (!imageToDraw || !imageToDraw.complete) {
+         for(let i = 0; i < FRAME_COUNT; i++) {
+            if (frameImagesRef.current[i]?.complete) {
+               imageToDraw = frameImagesRef.current[i];
+               drewFallback = true;
+               break;
+            }
+         }
+      }
+
+      if (imageToDraw?.complete && imageToDraw.naturalWidth > 0) {
+        context.clearRect(0, 0, viewportWidth, viewportHeight);
+
+        const imgWidth = imageToDraw.naturalWidth || FRAME_WIDTH;
+        const imgHeight = imageToDraw.naturalHeight || FRAME_HEIGHT;
 
         const scale = Math.max(
           viewportWidth / imgWidth,
@@ -81,8 +112,18 @@ export default function ScrollFrameSequence() {
         const y = (viewportHeight - height) / 2;
 
         context.imageSmoothingEnabled = true;
-        context.imageSmoothingQuality = "high";
-        context.drawImage(image, x, y, width, height);
+        context.drawImage(imageToDraw, x, y, width, height);
+
+        if (!drewFallback) {
+          lastDrawnFrameRef.current = frameIndex;
+          needsResizeRedrawRef.current = false;
+        } else {
+          // We drew a fallback, force a redraw next time
+          lastDrawnFrameRef.current = -1;
+        }
+      } else {
+        // We failed to draw anything valid, must retry
+        lastDrawnFrameRef.current = -1;
       }
     };
 
@@ -93,11 +134,19 @@ export default function ScrollFrameSequence() {
     drawFrameRef.current = drawFrame;
 
     const updateTargetFrame = () => {
-      const scrollRange = Math.max(
-        document.documentElement.scrollHeight - window.innerHeight,
-        1,
+      const docHeight = Math.max(
+        document.body.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.clientHeight,
+        document.documentElement.scrollHeight,
+        document.documentElement.offsetHeight
       );
-      const scrollProgress = clamp(window.scrollY / scrollRange, 0, 1);
+      const scrollRange = Math.max(docHeight - window.innerHeight, 1);
+      
+      // Calculate scroll progress with a 99% modifier so the last frame is reached 
+      // just before hitting the exact bottom pixel, fixing mobile address bar issues.
+      const scrollProgress = clamp(window.scrollY / (scrollRange * 0.99), 0, 1);
+      
       targetFrameRef.current = reducedMotionRef.current
         ? 0
         : scrollProgress * (FRAME_COUNT - 1);
@@ -106,9 +155,9 @@ export default function ScrollFrameSequence() {
     const animate = () => {
       const difference = targetFrameRef.current - currentFrameRef.current;
       currentFrameRef.current +=
-        reducedMotionRef.current ? difference : difference * 0.16;
+        reducedMotionRef.current ? difference : difference * 0.35; // Snappier easing
 
-      if (Math.abs(difference) > 0.01) {
+      if (Math.abs(difference) > 0.001 || lastDrawnFrameRef.current === -1) {
         drawFrame();
       }
 
@@ -120,60 +169,49 @@ export default function ScrollFrameSequence() {
       updateTargetFrame();
     };
 
-    const loadFrame = (index: number) =>
-      new Promise<void>((resolve) => {
-        const image = new Image();
-        image.decoding = "async";
-        image.onload = () => {
-          frameImagesRef.current[index] = image;
-          if (index === 0) drawFrame();
-          resolve();
-        };
-        image.onerror = (e) => {
-          console.error(`Failed to load frame ${index}:`, image.src);
-          resolve();
-        };
-        image.src = frameUrl(index);
-      });
-
     resizeCanvas();
     updateTargetFrame();
     window.addEventListener("resize", resizeCanvas, { passive: true });
     window.addEventListener("scroll", updateTargetFrame, { passive: true });
     mediaQuery.addEventListener("change", handleMotionPreferenceChange);
 
-    void loadFrame(0).then(async () => {
-      for (let i = 1; i < FRAME_COUNT; i++) {
-        if (!isMounted) break;
-        let retries = 3;
-        while (retries > 0) {
-          try {
-            await new Promise<void>((resolve, reject) => {
-              const image = new Image();
-              image.decoding = "async";
-              image.onload = () => {
-                frameImagesRef.current[i] = image;
-                resolve();
-              };
-              image.onerror = () => {
-                reject(new Error(`Failed to load frame ${i}`));
-              };
-              image.src = frameUrl(i);
-            });
-            break; // Success, move to next frame
-          } catch (e) {
-            retries--;
-            if (retries === 0) {
-              console.error(e);
-            } else {
-              // Wait a bit before retrying
-              await new Promise((r) => setTimeout(r, 200));
-              if (!isMounted) break;
+    const loadAllFrames = async () => {
+      const loadFrame = (index: number) => {
+        return new Promise<void>((resolve) => {
+          if (!isMounted) return resolve();
+          const image = new Image();
+          image.decoding = "async";
+          image.onload = () => {
+            frameImagesRef.current[index] = image;
+            if (Math.round(currentFrameRef.current) === index || lastDrawnFrameRef.current === -1) {
+              drawFrame();
             }
-          }
+            resolve();
+          };
+          image.onerror = () => {
+            console.warn(`Failed to load frame ${index}`);
+            resolve();
+          };
+          image.src = frameUrl(index);
+        });
+      };
+
+      // Load frame 0 first to show it immediately
+      await loadFrame(0);
+
+      // Load remaining frames in small batches to prevent network/CPU saturation (lag)
+      const batchSize = 4;
+      for (let i = 1; i < FRAME_COUNT; i += batchSize) {
+        if (!isMounted) return;
+        const promises = [];
+        for (let j = 0; j < batchSize && i + j < FRAME_COUNT; j++) {
+          promises.push(loadFrame(i + j));
         }
+        await Promise.all(promises);
       }
-    });
+    };
+
+    loadAllFrames();
 
     animationFrameRef.current = window.requestAnimationFrame(animate);
 
