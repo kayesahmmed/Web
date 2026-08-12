@@ -468,16 +468,14 @@ export function HeroMockPanel({ isDark }: { isDark: boolean }) {
         
         {/* Left Column: Sidebar & Hub Navigation with Header Logo - Floating Glass Card */}
         <div 
-          className="w-full md:w-64 shrink-0 flex flex-col gap-4 relative z-10 p-5 rounded-3xl backdrop-blur-3xl transition-all duration-700 shadow-2xl border"
+          className="w-full md:w-64 shrink-0 flex flex-col gap-4 relative z-10 p-5 rounded-[24px] backdrop-blur-[12px] transition-all duration-700 shadow-[0_8px_32px_0_rgba(0,0,0,0.15)] border border-[rgba(255,255,255,0.2)]"
           style={{
-            background: isDark ? "linear-gradient(145deg, rgba(30, 22, 48, 0.9), rgba(15, 10, 25, 0.95))" : "linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.95))",
-            borderColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.05)",
-            boxShadow: isDark ? "0 25px 60px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.1)" : "0 20px 40px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.6)"
+            background: "rgba(255, 255, 255, 0.12)",
           }}
         >
           
           {/* Header Logo inside the box */}
-          <div className={`flex items-center gap-2.5 px-1 pb-1 border-b ${isDark ? "border-white/10" : "border-slate-200"}`}>
+          <div className="flex items-center gap-2.5 px-1 pb-1 border-b border-white/10">
             {logoUrl ? (
               <img
                 src={logoUrl}
@@ -487,7 +485,7 @@ export function HeroMockPanel({ isDark }: { isDark: boolean }) {
               />
             ) : (
               <div className="flex flex-col">
-                <span className={`font-['Plus_Jakarta_Sans',sans-serif] font-black text-lg tracking-tight flex items-center gap-1 ${isDark ? "text-white" : "text-slate-900"}`}>
+                <span className="font-['Plus_Jakarta_Sans',sans-serif] font-black text-lg tracking-tight flex items-center gap-1 text-white">
                   ModX Lab
                   <span className="w-3.5 h-3.5 rounded-full bg-[#16CF83]/20 flex items-center justify-center text-[#16CF83]">
                     <svg className="w-2 h-2" fill="currentColor" viewBox="0 0 20 20">
@@ -504,9 +502,7 @@ export function HeroMockPanel({ isDark }: { isDark: boolean }) {
             {/* Active Item: Home */}
             <button
               onClick={() => scrollToSection("hero")}
-              className={`px-3 py-2 rounded-xl font-bold text-xs flex items-center gap-2.5 bg-[#16CF83]/15 border border-[#16CF83]/40 text-left transition-all shadow-[0_0_12px_rgba(22,207,131,0.2)] ${
-                isDark ? "text-white" : "text-slate-900"
-              }`}
+              className="px-3 py-2 rounded-xl font-bold text-xs flex items-center gap-2.5 bg-[#16CF83]/15 border border-[#16CF83]/40 text-left transition-all shadow-[0_0_12px_rgba(22,207,131,0.2)] text-white"
             >
               <div className="w-5 h-5 rounded-lg bg-[#16CF83]/20 flex items-center justify-center text-[#16CF83] shrink-0">
                 <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -518,11 +514,9 @@ export function HeroMockPanel({ isDark }: { isDark: boolean }) {
 
             <button
               onClick={() => scrollToSection("download-section")}
-              className={`px-3 py-2 rounded-xl font-medium text-xs flex items-center gap-2.5 text-left transition-colors ${
-                isDark ? "text-white/70 hover:bg-white/10 hover:text-white" : "text-slate-700 hover:bg-slate-900/10 hover:text-slate-900"
-              }`}
+              className="px-3 py-2 rounded-xl font-medium text-xs flex items-center gap-2.5 text-left transition-colors text-white/70 hover:bg-white/10 hover:text-white"
             >
-              <svg className={`w-4 h-4 shrink-0 ${isDark ? "text-white/60" : "text-slate-500"}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-4 h-4 shrink-0 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>
               <span>APK Downloads</span>
@@ -530,11 +524,9 @@ export function HeroMockPanel({ isDark }: { isDark: boolean }) {
 
             <button
               onClick={() => scrollToSection("video-section")}
-              className={`px-3 py-2 rounded-xl font-medium text-xs flex items-center gap-2.5 text-left transition-colors ${
-                isDark ? "text-white/70 hover:bg-white/10 hover:text-white" : "text-slate-700 hover:bg-slate-900/10 hover:text-slate-900"
-              }`}
+              className="px-3 py-2 rounded-xl font-medium text-xs flex items-center gap-2.5 text-left transition-colors text-white/70 hover:bg-white/10 hover:text-white"
             >
-              <svg className={`w-4 h-4 shrink-0 ${isDark ? "text-white/60" : "text-slate-500"}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-4 h-4 shrink-0 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
@@ -543,11 +535,9 @@ export function HeroMockPanel({ isDark }: { isDark: boolean }) {
 
             <button
               onClick={() => scrollToSection("faq-section")}
-              className={`px-3 py-2 rounded-xl font-medium text-xs flex items-center gap-2.5 text-left transition-colors ${
-                isDark ? "text-white/70 hover:bg-white/10 hover:text-white" : "text-slate-700 hover:bg-slate-900/10 hover:text-slate-900"
-              }`}
+              className="px-3 py-2 rounded-xl font-medium text-xs flex items-center gap-2.5 text-left transition-colors text-white/70 hover:bg-white/10 hover:text-white"
             >
-              <svg className={`w-4 h-4 shrink-0 ${isDark ? "text-white/60" : "text-slate-500"}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-4 h-4 shrink-0 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
               </svg>
               <span>Community Q&A</span>
@@ -555,11 +545,9 @@ export function HeroMockPanel({ isDark }: { isDark: boolean }) {
 
             <button
               onClick={() => scrollToSection("reviews-section")}
-              className={`px-3 py-2 rounded-xl font-medium text-xs flex items-center gap-2.5 text-left transition-colors ${
-                isDark ? "text-white/70 hover:bg-white/10 hover:text-white" : "text-slate-700 hover:bg-slate-900/10 hover:text-slate-900"
-              }`}
+              className="px-3 py-2 rounded-xl font-medium text-xs flex items-center gap-2.5 text-left transition-colors text-white/70 hover:bg-white/10 hover:text-white"
             >
-              <svg className={`w-4 h-4 shrink-0 ${isDark ? "text-white/60" : "text-slate-500"}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-4 h-4 shrink-0 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
               <span>Reviews & Support</span>
@@ -567,11 +555,9 @@ export function HeroMockPanel({ isDark }: { isDark: boolean }) {
           </div>
 
           {/* Anti-Ban Status Box */}
-          <div className={`mt-auto p-2.5 rounded-xl border ${
-            isDark ? "bg-gradient-to-br from-[#16CF83]/15 via-transparent to-[#7D52FD]/10 border-[#16CF83]/25" : "bg-gradient-to-br from-[#16CF83]/10 via-slate-50 to-[#7D52FD]/10 border-[#16CF83]/30"
-          }`}>
+          <div className="mt-auto p-2.5 rounded-xl border bg-gradient-to-br from-[#16CF83]/15 via-transparent to-[#7D52FD]/10 border-[#16CF83]/25">
             <div className="flex items-center justify-between mb-1">
-              <span className={`text-[9px] font-extrabold uppercase tracking-wider flex items-center gap-1 ${isDark ? "text-white/70" : "text-slate-600"}`}>
+              <span className="text-[9px] font-extrabold uppercase tracking-wider flex items-center gap-1 text-white/70">
                 <svg className="w-3 h-3 text-[#16CF83]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
@@ -581,29 +567,23 @@ export function HeroMockPanel({ isDark }: { isDark: boolean }) {
             </div>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-[#16CF83] shadow-[0_0_8px_rgba(22,207,131,0.9)] animate-pulse" />
-              <span className={`text-[11px] font-bold ${isDark ? "text-white" : "text-slate-900"}`}>100% Safe & Undetected</span>
+              <span className="text-[11px] font-bold text-white">100% Safe & Undetected</span>
             </div>
           </div>
 
           {/* Social Icons row */}
           <div className="flex items-center gap-2 pt-1">
-            <a href={footerYoutube} target="_blank" rel="noreferrer" className={`w-7 h-7 rounded-full border flex items-center justify-center transition-all ${
-              isDark ? "bg-white/5 hover:bg-white/15 border-white/10 text-white/70 hover:text-white" : "bg-slate-100 hover:bg-slate-200 border-slate-300 text-slate-700"
-            }`}>
+            <a href={footerYoutube} target="_blank" rel="noreferrer" className="w-7 h-7 rounded-full border flex items-center justify-center transition-all bg-white/5 hover:bg-white/15 border-white/10 text-white/70 hover:text-white">
               <svg className="w-3.5 h-3.5 text-red-500" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
               </svg>
             </a>
-            <a href={footerTelegram} target="_blank" rel="noreferrer" className={`w-7 h-7 rounded-full border flex items-center justify-center transition-all ${
-              isDark ? "bg-white/5 hover:bg-white/15 border-white/10 text-white/70 hover:text-white" : "bg-slate-100 hover:bg-slate-200 border-slate-300 text-slate-700"
-            }`}>
+            <a href={footerTelegram} target="_blank" rel="noreferrer" className="w-7 h-7 rounded-full border flex items-center justify-center transition-all bg-white/5 hover:bg-white/15 border-white/10 text-white/70 hover:text-white">
               <svg className="w-3.5 h-3.5 text-sky-500" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
               </svg>
             </a>
-            <a href={footerWhatsapp} target="_blank" rel="noreferrer" className={`w-7 h-7 rounded-full border flex items-center justify-center transition-all ${
-              isDark ? "bg-white/5 hover:bg-white/15 border-white/10 text-white/70 hover:text-white" : "bg-slate-100 hover:bg-slate-200 border-slate-300 text-slate-700"
-            }`}>
+            <a href={footerWhatsapp} target="_blank" rel="noreferrer" className="w-7 h-7 rounded-full border flex items-center justify-center transition-all bg-white/5 hover:bg-white/15 border-white/10 text-white/70 hover:text-white">
               <svg className="w-3.5 h-3.5 text-green-500" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.487-1.761-1.66-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
               </svg>
@@ -639,11 +619,7 @@ export function HeroMockPanel({ isDark }: { isDark: boolean }) {
             {/* Feature Card 1: APK Downloads */}
             <div
               onClick={() => scrollToSection("download-section")}
-              className={`p-3.5 rounded-2xl border transition-all cursor-pointer group flex flex-col justify-between relative overflow-hidden ${
-                isDark
-                  ? "bg-white/[0.04] border-[#00E5D1]/30 hover:bg-white/[0.08] hover:border-[#00E5D1]/70"
-                  : "bg-white border-[#00E5D1]/40 hover:border-[#00E5D1] shadow-sm hover:shadow-md"
-              }`}
+              className="p-3.5 rounded-2xl border transition-all cursor-pointer group flex flex-col justify-between relative overflow-hidden bg-white/[0.08] border-[#00E5D1]/30 hover:bg-white/[0.12] hover:border-[#00E5D1]/70"
             >
               <div className="flex items-start justify-between mb-2">
                 <div className="w-9 h-9 rounded-xl bg-[#00E5D1]/15 border border-[#00E5D1]/30 flex items-center justify-center text-[#00E5D1] group-hover:scale-110 transition-transform">
@@ -656,19 +632,15 @@ export function HeroMockPanel({ isDark }: { isDark: boolean }) {
                 </span>
               </div>
               <div>
-                <h4 className={`font-bold text-sm font-['Plus_Jakarta_Sans',sans-serif] ${isDark ? "text-white" : "text-slate-900"}`}>APK Downloads</h4>
-                <p className={`text-[11px] mt-0.5 line-clamp-1 ${isDark ? "text-white/60" : "text-slate-600"}`}>Direct high-speed APK files</p>
+                <h4 className="font-bold text-sm font-['Plus_Jakarta_Sans',sans-serif] text-white">APK Downloads</h4>
+                <p className="text-[11px] mt-0.5 line-clamp-1 text-white/70">Direct high-speed APK files</p>
               </div>
             </div>
 
             {/* Feature Card 2: User Reviews & Feedback */}
             <div
               onClick={() => scrollToSection("reviews-section")}
-              className={`p-3.5 rounded-2xl border transition-all cursor-pointer group flex flex-col justify-between relative overflow-hidden ${
-                isDark
-                  ? "bg-white/[0.04] border-[#a78bfa]/30 hover:bg-white/[0.08] hover:border-[#a78bfa]/70"
-                  : "bg-white border-[#a78bfa]/40 hover:border-[#7D52FD] shadow-sm hover:shadow-md"
-              }`}
+              className="p-3.5 rounded-2xl border transition-all cursor-pointer group flex flex-col justify-between relative overflow-hidden bg-white/[0.08] border-[#a78bfa]/30 hover:bg-white/[0.12] hover:border-[#a78bfa]/70"
             >
               <div className="flex items-start justify-between mb-2">
                 <div className="w-9 h-9 rounded-xl bg-[#a78bfa]/15 border border-[#a78bfa]/30 flex items-center justify-center text-[#a78bfa] group-hover:scale-110 transition-transform">
@@ -681,19 +653,15 @@ export function HeroMockPanel({ isDark }: { isDark: boolean }) {
                 </span>
               </div>
               <div>
-                <h4 className={`font-bold text-sm font-['Plus_Jakarta_Sans',sans-serif] ${isDark ? "text-white" : "text-slate-900"}`}>User Reviews</h4>
-                <p className={`text-[11px] mt-0.5 line-clamp-1 ${isDark ? "text-white/60" : "text-slate-600"}`}>Community ratings & feedback</p>
+                <h4 className="font-bold text-sm font-['Plus_Jakarta_Sans',sans-serif] text-white">User Reviews</h4>
+                <p className="text-[11px] mt-0.5 line-clamp-1 text-white/70">Community ratings & feedback</p>
               </div>
             </div>
 
             {/* Feature Card 3: Features & Anti-Ban */}
             <div
               onClick={() => scrollToSection("features")}
-              className={`p-3.5 rounded-2xl border transition-all cursor-pointer group flex flex-col justify-between relative overflow-hidden ${
-                isDark
-                  ? "bg-white/[0.04] border-[#16CF83]/30 hover:bg-white/[0.08] hover:border-[#16CF83]/70"
-                  : "bg-white border-[#16CF83]/40 hover:border-[#16CF83] shadow-sm hover:shadow-md"
-              }`}
+              className="p-3.5 rounded-2xl border transition-all cursor-pointer group flex flex-col justify-between relative overflow-hidden bg-white/[0.08] border-[#16CF83]/30 hover:bg-white/[0.12] hover:border-[#16CF83]/70"
             >
               <div className="flex items-start justify-between mb-2">
                 <div className="w-9 h-9 rounded-xl bg-[#16CF83]/15 border border-[#16CF83]/30 flex items-center justify-center text-[#16CF83] group-hover:scale-110 transition-transform">
@@ -706,19 +674,15 @@ export function HeroMockPanel({ isDark }: { isDark: boolean }) {
                 </span>
               </div>
               <div>
-                <h4 className={`font-bold text-sm font-['Plus_Jakarta_Sans',sans-serif] ${isDark ? "text-white" : "text-slate-900"}`}>Anti-Ban</h4>
-                <p className={`text-[11px] mt-0.5 line-clamp-1 ${isDark ? "text-white/60" : "text-slate-600"}`}>Anti-ban protection & tools</p>
+                <h4 className="font-bold text-sm font-['Plus_Jakarta_Sans',sans-serif] text-white">Anti-Ban</h4>
+                <p className="text-[11px] mt-0.5 line-clamp-1 text-white/70">Anti-ban protection & tools</p>
               </div>
             </div>
 
             {/* Feature Card 4: FAQ & Questions */}
             <div
               onClick={() => scrollToSection("faq-section")}
-              className={`p-3.5 rounded-2xl border transition-all cursor-pointer group flex flex-col justify-between relative overflow-hidden ${
-                isDark
-                  ? "bg-white/[0.04] border-[#FFB11A]/30 hover:bg-white/[0.08] hover:border-[#FFB11A]/70"
-                  : "bg-white border-[#FFB11A]/40 hover:border-[#FFB11A] shadow-sm hover:shadow-md"
-              }`}
+              className="p-3.5 rounded-2xl border transition-all cursor-pointer group flex flex-col justify-between relative overflow-hidden bg-white/[0.08] border-[#FFB11A]/30 hover:bg-white/[0.12] hover:border-[#FFB11A]/70"
             >
               <div className="flex items-start justify-between mb-2">
                 <div className="w-9 h-9 rounded-xl bg-[#FFB11A]/15 border border-[#FFB11A]/30 flex items-center justify-center text-[#FFB11A] group-hover:scale-110 transition-transform">
@@ -731,8 +695,8 @@ export function HeroMockPanel({ isDark }: { isDark: boolean }) {
                 </span>
               </div>
               <div>
-                <h4 className={`font-bold text-sm font-['Plus_Jakarta_Sans',sans-serif] ${isDark ? "text-white" : "text-slate-900"}`}>Community Q&A</h4>
-                <p className={`text-[11px] mt-0.5 line-clamp-1 ${isDark ? "text-white/60" : "text-slate-600"}`}>Ask questions & get answers</p>
+                <h4 className="font-bold text-sm font-['Plus_Jakarta_Sans',sans-serif] text-white">Community Q&A</h4>
+                <p className="text-[11px] mt-0.5 line-clamp-1 text-white/70">Ask questions & get answers</p>
               </div>
             </div>
           </div>
@@ -1131,14 +1095,12 @@ export default function HeroSection({ isDark, t }: { isDark: boolean; t: Theme }
                     className="w-full h-full rounded-full pl-5 pr-10 text-[16px] outline-none transition-all duration-300 font-['Plus_Jakarta_Sans',sans-serif]"
                     style={{
                       fontSize: "16px",
-                      background: isDark ? "rgba(22,20,32,0.85)" : "rgba(255,255,255,0.9)",
-                      backdropFilter: "blur(16px)",
-                      WebkitBackdropFilter: "blur(16px)",
-                      border: `1.5px solid ${isInputFocused ? "#7D52FD" : t.cardBorder}`,
-                      color: t.text,
-                      boxShadow: isInputFocused
-                        ? "0 0 25px rgba(125,82,253,0.45), inset 0 1px 2px rgba(255,255,255,0.15)"
-                        : "0 8px 25px rgba(0,0,0,0.15)",
+                      background: "rgba(255, 255, 255, 0.12)",
+                      backdropFilter: "blur(12px)",
+                      WebkitBackdropFilter: "blur(12px)",
+                      border: "1px solid rgba(255, 255, 255, 0.2)",
+                      color: "white",
+                      boxShadow: "0 8px 32px 0 rgba(0,0,0,0.15)",
                     }}
                   />
                   {searchVal && (
@@ -1166,18 +1128,16 @@ export default function HeroSection({ isDark, t }: { isDark: boolean; t: Theme }
                 style={{
                   background: searchOpen
                     ? "linear-gradient(135deg, #7D52FD, #00E5D1)"
-                    : isDark
-                    ? "linear-gradient(135deg, rgba(125,82,253,0.25), rgba(255,255,255,0.08))"
-                    : "linear-gradient(135deg, rgba(255,255,255,0.9), rgba(240,240,250,0.8))",
-                  border: `1.5px solid ${searchOpen ? "#00E5D1" : t.cardBorder}`,
+                    : "rgba(255, 255, 255, 0.12)",
+                  border: `1px solid ${searchOpen ? "#00E5D1" : "rgba(255,255,255,0.2)"}`,
                   boxShadow: searchOpen
                     ? "0 0 30px rgba(125,82,253,0.6)"
-                    : "0 8px 20px rgba(0,0,0,0.15)",
+                    : "0 8px 32px 0 rgba(0,0,0,0.15)",
                 }}
                 aria-label="Search"
               >
                 <svg className="w-6 h-6 transition-transform duration-300" fill="none" viewBox="0 0 15 15">
-                  <path d={svgPaths.p3e9cf280} fill={searchOpen || isDark ? "white" : "#151022"} />
+                  <path d={svgPaths.p3e9cf280} fill="white" />
                 </svg>
               </motion.button>
 
@@ -1190,11 +1150,11 @@ export default function HeroSection({ isDark, t }: { isDark: boolean; t: Theme }
                   transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                   className="absolute top-[68px] right-0 w-80 sm:w-96 md:w-[420px] rounded-2xl p-3 z-[999] backdrop-blur-2xl transition-colors duration-300 shadow-2xl overflow-hidden"
                   style={{
-                    background: isDark ? "rgba(18,16,26,0.96)" : "rgba(255,255,255,0.98)",
-                    border: `1.5px solid ${isDark ? "rgba(125,82,253,0.35)" : "rgba(125,82,253,0.25)"}`,
-                    boxShadow: isDark
-                      ? "0 20px 50px -10px rgba(0,0,0,0.85), 0 0 25px rgba(125,82,253,0.25)"
-                      : "0 20px 50px -10px rgba(125,82,253,0.25), 0 0 20px rgba(0,194,178,0.2)",
+                    background: "rgba(30, 30, 40, 0.7)",
+                    backdropFilter: "blur(16px)",
+                    WebkitBackdropFilter: "blur(16px)",
+                    border: "1px solid rgba(255,255,255,0.15)",
+                    boxShadow: "0 20px 50px -10px rgba(0,0,0,0.85), 0 0 25px rgba(125,82,253,0.15)",
                   }}
                 >
                   {filteredResults.length > 0 ? (
@@ -1204,9 +1164,9 @@ export default function HeroSection({ isDark, t }: { isDark: boolean; t: Theme }
                           key={index}
                           className="w-full text-left p-3 rounded-xl transition-all duration-200 flex items-center justify-between gap-3 cursor-pointer group border"
                           style={{
-                            background: isDark ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.02)",
-                            borderColor: isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.05)",
-                            color: t.text
+                            background: "rgba(255,255,255,0.05)",
+                            borderColor: "rgba(255,255,255,0.1)",
+                            color: "white"
                           }}
                           onMouseDown={(e) => e.preventDefault()}
                           onClick={() => {
@@ -1229,12 +1189,12 @@ export default function HeroSection({ isDark, t }: { isDark: boolean; t: Theme }
                             setSearchVal("");
                           }}
                           onMouseEnter={(e) => {
-                            e.currentTarget.style.background = isDark ? "rgba(22,207,131,0.15)" : "rgba(22,207,131,0.1)";
+                            e.currentTarget.style.background = "rgba(22,207,131,0.2)";
                             e.currentTarget.style.borderColor = "rgba(22,207,131,0.4)";
                           }}
                           onMouseLeave={(e) => {
-                            e.currentTarget.style.background = isDark ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.02)";
-                            e.currentTarget.style.borderColor = isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.05)";
+                            e.currentTarget.style.background = "rgba(255,255,255,0.05)";
+                            e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)";
                           }}
                         >
                           <div className="flex items-center gap-3 min-w-0 flex-1">
@@ -1244,10 +1204,10 @@ export default function HeroSection({ isDark, t }: { isDark: boolean; t: Theme }
                               </svg>
                             </div>
                             <div className="flex flex-col gap-0.5 min-w-0 flex-1">
-                              <span className="font-bold text-sm truncate group-hover:text-[#16CF83] transition-colors" style={{ color: t.text }}>
+                              <span className="font-bold text-sm truncate group-hover:text-[#16CF83] transition-colors text-white">
                                 {item.title}
                               </span>
-                              <span className="text-xs font-medium truncate opacity-75" style={{ color: t.subtext }}>
+                              <span className="text-xs font-medium truncate opacity-75 text-white/70">
                                 {item.desc}
                               </span>
                             </div>

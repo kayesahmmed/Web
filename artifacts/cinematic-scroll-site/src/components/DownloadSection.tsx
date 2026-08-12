@@ -244,14 +244,14 @@ export default function DownloadSection({ t, isDark }: { t: Theme; isDark?: bool
                           </svg>
                         </div>
                         <div>
-                          <h3 className="font-['Plus_Jakarta_Sans',sans-serif] font-bold text-lg" style={{ color: t.text }}>{dl.howToUseTitle || "How to Use"}</h3>
-                          <p className="text-xs font-semibold mt-0.5 opacity-80" style={{ color: t.subtext }}>
+                          <h3 className="font-['Plus_Jakarta_Sans',sans-serif] font-bold text-lg text-white">{dl.howToUseTitle || "How to Use"}</h3>
+                          <p className="text-xs font-semibold mt-0.5 opacity-80 text-white/70">
                             Click here for step-by-step setup guide
                           </p>
                         </div>
                       </div>
                       <div className="flex items-center gap-2.5">
-                        <span className="text-xs font-semibold hidden sm:inline transition-colors" style={{ color: isHowToUseOpen ? "#16CF83" : t.subtext }}>
+                        <span className="text-xs font-semibold hidden sm:inline transition-colors" style={{ color: isHowToUseOpen ? "#16CF83" : "rgba(255,255,255,0.6)" }}>
                           {isHowToUseOpen ? "Close guide" : "Expand guide"}
                         </span>
                         <motion.div 
@@ -280,11 +280,12 @@ export default function DownloadSection({ t, isDark }: { t: Theme; isDark?: bool
                           className="overflow-hidden"
                         >
                           <div
-                            className="mt-3 p-5 sm:p-6 rounded-2xl flex flex-col gap-4 relative overflow-hidden shadow-transition duration-300"
+                            className="mt-3 p-5 sm:p-6 rounded-[24px] flex flex-col gap-4 relative overflow-hidden shadow-[0_8px_32px_0_rgba(0,0,0,0.15)] transition-all duration-300"
                             style={{
-                              background: isDark ? "rgba(10, 15, 28, 0.6)" : "rgba(255, 255, 255, 0.7)",
-                              border: isDark ? "1px solid rgba(22, 207, 131, 0.25)" : "1px solid rgba(22, 207, 131, 0.3)",
-                              boxShadow: isDark ? "0 10px 30px -10px rgba(0,0,0,0.5)" : "0 10px 30px -10px rgba(22,207,131,0.1)"
+                              background: "rgba(255, 255, 255, 0.12)",
+                              backdropFilter: "blur(12px)",
+                              WebkitBackdropFilter: "blur(12px)",
+                              border: "1px solid rgba(255, 255, 255, 0.2)"
                             }}
                           >
                             <div className="absolute top-0 right-0 w-32 h-32 bg-[#16CF83]/10 rounded-full filter blur-2xl pointer-events-none" />
@@ -297,8 +298,8 @@ export default function DownloadSection({ t, isDark }: { t: Theme; isDark?: bool
                                     key={i}
                                     className="p-4 rounded-xl flex flex-col gap-2 relative overflow-hidden transition-all duration-300 hover:translate-y-[-2px]"
                                     style={{
-                                      background: isDark ? "rgba(255, 255, 255, 0.03)" : "rgba(255, 255, 255, 0.8)",
-                                      border: isDark ? "1px solid rgba(255, 255, 255, 0.08)" : "1px solid rgba(0, 0, 0, 0.06)"
+                                      background: "rgba(255, 255, 255, 0.08)",
+                                      border: "1px solid rgba(255, 255, 255, 0.15)"
                                     }}
                                   >
                                     <div className="flex items-center justify-between gap-2">
@@ -309,7 +310,7 @@ export default function DownloadSection({ t, isDark }: { t: Theme; isDark?: bool
                                         STEP 0{i + 1}
                                       </span>
                                     </div>
-                                    <p className="font-['Plus_Jakarta_Sans',sans-serif] text-xs leading-relaxed mt-1" style={{ color: t.subtext }}>
+                                    <p className="font-['Plus_Jakarta_Sans',sans-serif] text-xs leading-relaxed mt-1 text-white/90 font-medium tracking-wide shadow-sm">
                                       {step}
                                     </p>
                                   </div>
