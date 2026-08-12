@@ -241,8 +241,14 @@ export default function FAQSection({ t }: { t: Theme }) {
               transition={{ duration: 0.3 }}
               className="overflow-hidden"
             >
-              <form onSubmit={handleAsk} className="p-6 rounded-3xl" style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}>
-                <p className="font-bold text-lg mb-3" style={{ color: t.text }}>Have a new question?</p>
+              <form onSubmit={handleAsk} className="p-6 rounded-[24px]" style={{ 
+                background: "rgba(255, 255, 255, 0.12)", 
+                backdropFilter: "blur(12px)", 
+                WebkitBackdropFilter: "blur(12px)", 
+                border: `1px solid rgba(255, 255, 255, 0.2)`,
+                boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.15)"
+              }}>
+                <p className="font-bold text-lg mb-3 text-white">Have a new question?</p>
                 <div className="flex flex-col sm:flex-row gap-3">
                   <div className="flex-1 flex flex-col sm:flex-row gap-3">
                     <input
@@ -250,8 +256,8 @@ export default function FAQSection({ t }: { t: Theme }) {
                       value={newQuestion}
                       onChange={(e) => setNewQuestion(e.target.value)}
                       placeholder="Type your question here..."
-                      className="flex-1 px-5 py-3 rounded-xl outline-none"
-                      style={{ background: t.inputBg, border: `1px solid ${t.border || t.cardBorder}`, color: t.text }}
+                      className="flex-1 px-5 py-3 rounded-[16px] outline-none"
+                      style={{ background: "rgba(255, 255, 255, 0.05)", border: `1px solid rgba(255, 255, 255, 0.1)`, color: "white" }}
                       required
                     />
                     <input
@@ -262,8 +268,8 @@ export default function FAQSection({ t }: { t: Theme }) {
                           setImageFile(e.target.files[0]);
                         }
                       }}
-                      className="flex-1 sm:max-w-[200px] px-3 py-3 rounded-xl outline-none text-sm cursor-pointer file:mr-3 file:py-1 file:px-3 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-[#16CF83]/10 file:text-[#16CF83] hover:file:bg-[#16CF83]/20"
-                      style={{ background: t.inputBg, border: `1px solid ${t.border || t.cardBorder}`, color: t.text }}
+                      className="flex-1 sm:max-w-[200px] px-3 py-3 rounded-[16px] outline-none text-sm cursor-pointer file:mr-3 file:py-1 file:px-3 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-[#16CF83]/10 file:text-[#16CF83] hover:file:bg-[#16CF83]/20"
+                      style={{ background: "rgba(255, 255, 255, 0.05)", border: `1px solid rgba(255, 255, 255, 0.1)`, color: "white" }}
                     />
                   </div>
                   <button
@@ -287,18 +293,20 @@ export default function FAQSection({ t }: { t: Theme }) {
             return (
               <div 
                 key={faq.id} 
-                className="rounded-2xl overflow-hidden transition-all duration-300 relative group"
+                className="rounded-[24px] overflow-hidden transition-all duration-300 relative group"
                 style={{ 
-                  background: t.cardBg, 
-                  border: isOpen ? `1px solid rgba(22, 207, 131, 0.4)` : `1px solid ${t.cardBorder}`,
-                  boxShadow: isOpen ? `0 4px 20px -5px rgba(22, 207, 131, 0.25)` : "none"
+                  background: "rgba(255, 255, 255, 0.12)", 
+                  backdropFilter: "blur(12px)",
+                  WebkitBackdropFilter: "blur(12px)",
+                  border: isOpen ? `1px solid rgba(22, 207, 131, 0.4)` : `1px solid rgba(255, 255, 255, 0.2)`,
+                  boxShadow: isOpen ? `0 8px 32px 0 rgba(22, 207, 131, 0.25)` : "0 8px 32px 0 rgba(0, 0, 0, 0.15)"
                 }}
               >
                 <button
                   onClick={() => setOpenId(isOpen ? null : faq.id)}
                   className="w-full px-6 py-5 flex items-center justify-between gap-4 text-left"
                 >
-                  <span className="font-bold text-base pr-4 transition-colors duration-300" style={{ color: isOpen ? "#16CF83" : t.text }}>{faq.q}</span>
+                  <span className="font-bold text-base pr-4 transition-colors duration-300" style={{ color: isOpen ? "#16CF83" : "white" }}>{faq.q}</span>
                   <div
                     className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-300 shrink-0"
                     style={{
@@ -322,7 +330,7 @@ export default function FAQSection({ t }: { t: Theme }) {
                       transition={{ duration: 0.3 }}
                     >
                       <div className="px-6 pb-6 pt-2">
-                        <p className="text-sm font-medium leading-relaxed" style={{ color: t.subtext }}>{faq.a}</p>
+                        <p className="text-sm font-medium leading-relaxed" style={{ color: "rgba(255, 255, 255, 0.7)" }}>{faq.a}</p>
                         {faq.imageUrl && (
                           <div className="mt-4 flex justify-start">
                             <img 

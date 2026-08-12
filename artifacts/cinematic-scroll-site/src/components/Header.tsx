@@ -415,16 +415,16 @@ export default function Header({
 
       {/* Desktop nav (Always active, scaled beautifully with safe padding) */}
       <nav
-        className="flex gap-1 items-center h-10 p-1 px-1.5 rounded-full absolute left-1/2 -translate-x-1/2 transition-all duration-300 backdrop-blur-md shadow-sm border flex-nowrap overflow-x-auto scrollbar-none max-w-[calc(100vw-220px)] sm:max-w-[calc(100vw-280px)] shrink-0 my-0"
+        className="flex gap-1 items-center h-10 p-1 px-1.5 rounded-full absolute left-1/2 -translate-x-1/2 transition-all duration-300 shadow-sm border flex-nowrap overflow-x-auto scrollbar-none max-w-[calc(100vw-220px)] sm:max-w-[calc(100vw-280px)] shrink-0 my-0 backdrop-blur-[12px]"
         style={{
-          background: isDark ? "rgba(255,255,255,0.12)" : "rgba(255,255,255,0.75)",
-          borderColor: isDark ? "rgba(255,255,255,0.22)" : "rgba(0,0,0,0.08)",
-          boxShadow: isDark ? "0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.2)" : "0 4px 20px rgba(0,0,0,0.05)"
+          background: "rgba(255, 255, 255, 0.12)",
+          borderColor: "rgba(255, 255, 255, 0.2)",
+          boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.15)"
         }}
       >
         <div
           className={`absolute top-1 bottom-1 rounded-full ${pillAnimated ? "transition-all duration-200 ease-out" : "transition-none"}`}
-          style={{ background: isDark ? "#ffffff" : "#151022", left: pill.left, width: pill.width, opacity: pill.width > 0 ? 1 : 0 }}
+          style={{ background: "rgba(255, 255, 255, 0.2)", left: pill.left, width: pill.width, opacity: pill.width > 0 ? 1 : 0 }}
         />
         {dynamicNav.map((item, i) => {
           const isActive = active === item.id;
@@ -438,8 +438,8 @@ export default function Header({
               }`}
               style={{
                 color: isActive
-                  ? (isDark ? "#000000" : "#ffffff")
-                  : (isDark ? "rgba(255, 255, 255, 0.85)" : "rgba(15, 10, 34, 0.85)")
+                  ? "#ffffff"
+                  : "rgba(255, 255, 255, 0.7)"
               }}
             >
               {item.label}
@@ -449,67 +449,15 @@ export default function Header({
       </nav>
 
       <div className="flex items-center gap-2 sm:gap-3 pl-10 sm:pl-16 ml-auto z-20 shrink-0">
-        {/* Theme toggle - Sleek and compact */}
-        <button
-          onClick={() => setIsDark(!isDark)}
-          aria-label="Toggle theme"
-          className="relative h-10 w-[84px] rounded-full shrink-0 transition-all duration-300 cursor-pointer border flex items-center shadow-sm backdrop-blur-md"
-          style={{
-            background: isDark ? "#ffffff" : "rgba(255, 255, 255, 0.5)",
-            borderColor: isDark ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 0.08)",
-          }}
-        >
-          <div
-            className={`absolute top-1 h-8 w-8 rounded-full shadow-md ${themeAnimated ? "transition-all duration-200 ease-out" : "transition-none"}`}
-            style={{
-              left: isDark ? "48px" : "4px",
-              background: isDark ? t.bg : "#FCC900",
-              boxShadow: isDark
-                ? "0 2px 8px rgba(0, 0, 0, 0.4)"
-                : "0 2px 8px rgba(252, 201, 0, 0.4)",
-            }}
-          />
-          <div className="absolute left-0 top-0 w-10 h-10 flex items-center justify-center pointer-events-none z-10">
-            <svg
-              className="w-4 h-4 transition-all duration-300"
-              fill="none"
-              viewBox="0 0 14.9788 14.0045"
-            >
-              <path
-                d={svgPaths.p10afa40}
-                stroke="#000000"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2.084"
-              />
-            </svg>
-          </div>
-          <div className="absolute right-0 top-0 w-10 h-10 flex items-center justify-center pointer-events-none z-10">
-            <svg
-              className="w-4 h-4 transition-all duration-300"
-              fill="none"
-              viewBox="0 0 14.7523 13.8062"
-            >
-              <path
-                d={svgPaths.p1ee40600}
-                stroke={isDark ? "#ffffff" : "#000000"}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2.23077"
-              />
-            </svg>
-          </div>
-        </button>
-
         {/* User Profile / Login */}
         {currentUser ? (
           <div className="relative block">
             <div
-              className="flex items-center gap-1.5 pl-[2px] pr-3 h-10 rounded-full cursor-pointer transition-all hover:scale-105 backdrop-blur-md shadow-sm border"
+              className="flex items-center gap-1.5 pl-[2px] pr-3 h-10 rounded-full cursor-pointer transition-all hover:scale-105 shadow-sm border backdrop-blur-[12px]"
               onClick={() => setIsLogoutOpen(!isLogoutOpen)}
               style={{
-                background: isDark ? "rgba(123, 44, 191, 0.2)" : "rgba(255, 255, 255, 0.75)",
-                borderColor: isDark ? "rgba(123, 44, 191, 0.4)" : "rgba(0, 0, 0, 0.1)",
+                background: "rgba(255, 255, 255, 0.12)",
+                borderColor: "rgba(255, 255, 255, 0.2)",
               }}
             >
               {currentUser.photoURL ? (
@@ -519,10 +467,10 @@ export default function Header({
                   {(currentUser.displayName || "U").charAt(0).toUpperCase()}
                 </div>
               )}
-              <span className="inline-block text-xs font-bold max-w-[65px] sm:max-w-[90px] truncate" style={{ color: isDark ? "#ffffff" : "#111111" }}>
+              <span className="inline-block text-xs font-bold max-w-[65px] sm:max-w-[90px] truncate" style={{ color: "white" }}>
                 {currentUser.displayName?.split(" ")[0]}
               </span>
-              <svg className={`w-3.5 h-3.5 transition-transform ${isLogoutOpen ? 'rotate-180' : ''}`} style={{ color: isDark ? "#ffffff" : "#111111" }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className={`w-3.5 h-3.5 transition-transform ${isLogoutOpen ? 'rotate-180' : ''}`} style={{ color: "white" }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
               </svg>
             </div>

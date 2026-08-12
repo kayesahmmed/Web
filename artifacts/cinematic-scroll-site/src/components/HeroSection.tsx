@@ -613,22 +613,18 @@ export function HeroMockPanel({ isDark }: { isDark: boolean }) {
 
         {/* Right Column: Premium Content Showcase Grid */}
         <div 
-          className="flex-1 flex flex-col gap-4 relative z-10 p-5 sm:p-6 rounded-3xl backdrop-blur-3xl transition-all duration-700 shadow-2xl border"
+          className="flex-1 flex flex-col gap-4 relative z-10 p-5 sm:p-6 rounded-[24px] backdrop-blur-[12px] transition-all duration-700 shadow-[0_8px_32px_0_rgba(0,0,0,0.15)] border border-[rgba(255,255,255,0.2)]"
           style={{
-            background: isDark ? "linear-gradient(145deg, rgba(30, 22, 48, 0.9), rgba(15, 10, 25, 0.95))" : "linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.95))",
-            borderColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.05)",
-            boxShadow: isDark ? "0 25px 60px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.1)" : "0 20px 40px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.6)"
+            background: "rgba(255, 255, 255, 0.12)",
           }}
         >
           <div className="flex justify-between items-center">
             <div>
-              <h2 className={`text-xl font-extrabold font-['Plus_Jakarta_Sans',sans-serif] tracking-tight flex items-center gap-2 ${
-                isDark ? "text-white" : "text-slate-900"
-              }`}>
+              <h2 className="text-xl font-extrabold font-['Plus_Jakarta_Sans',sans-serif] tracking-tight flex items-center gap-2 text-white">
                 <span>ModX Lab Hub</span>
                 <span className="text-[10px] font-bold text-[#00E5D1] bg-[#00E5D1]/15 px-2 py-0.5 rounded-full border border-[#00E5D1]/30">v4.5</span>
               </h2>
-              <p className={`text-xs ${isDark ? "text-white/60" : "text-slate-600"}`}>Official Mods, High-Speed CDN & YouTube Tutorials.</p>
+              <p className="text-xs text-white/70">Official Mods, High-Speed CDN & YouTube Tutorials.</p>
             </div>
             <div className={`hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-[10px] font-mono text-[#16CF83] ${
               isDark ? "bg-white/5 border-white/10" : "bg-slate-100 border-slate-200"

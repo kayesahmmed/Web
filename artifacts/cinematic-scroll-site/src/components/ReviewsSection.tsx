@@ -43,17 +43,18 @@ function ReviewCard({ r, t, anim, isDark, minGlow }: { r: any; t: Theme; anim?: 
     <div
       className={`${anim || ""} relative overflow-hidden shadow-transition duration-300 h-full flex flex-col justify-between select-none transform-gpu`}
       style={{
-        background: t.reviewBg,
+        background: "rgba(255, 255, 255, 0.12)",
+        backdropFilter: "blur(12px)",
         borderRadius: "18px",
         padding: "16px 16px",
-        border: `1px solid ${t.cardBorder}`,
+        border: "1px solid rgba(255, 255, 255, 0.2)",
+        boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.15)",
         minWidth: 0,
         minHeight: "180px",
-        WebkitBackdropFilter: "blur(24px)",
+        WebkitBackdropFilter: "blur(12px)",
       }}
     >
       <div className={`absolute -bottom-10 left-1/2 -translate-x-1/2 w-[80%] h-16 rounded-full transition-colors duration-500 pointer-events-none ${minGlow ? 'blur-[50px] opacity-[0.02]' : (isDark ? 'blur-[35px] opacity-[0.05]' : 'blur-[35px] opacity-[0.15]')}`} style={{ background: r.initColor || "#7B2CBF" }} />
-
       <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 8, position: "relative", zIndex: 10 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
           {photo ? (
@@ -69,13 +70,13 @@ function ReviewCard({ r, t, anim, isDark, minGlow }: { r: any; t: Theme; anim?: 
             </div>
           )}
           <div className="min-w-0">
-            <p className="font-['Plus_Jakarta_Sans',sans-serif] font-bold text-xs sm:text-base tracking-wide truncate" style={{ color: t.text }}>{r.name}</p>
+            <p className="font-['Plus_Jakarta_Sans',sans-serif] font-bold text-xs sm:text-base tracking-wide truncate text-white">{r.name}</p>
             <StarRow n={r.stars} t={t} />
           </div>
         </div>
         <span className="font-['Plus_Jakarta_Sans',sans-serif] font-medium text-[9px] sm:text-xs px-2 py-0.5 sm:px-3 sm:py-1.5 rounded-full shrink-0" style={{ background: r.verBg || "rgba(22,207,131,0.15)", color: r.verColor || "#16CF83" }}>✓ Verified</span>
       </div>
-      <p className="font-['Plus_Jakarta_Sans',sans-serif] font-medium text-[11px] sm:text-[17px] leading-snug sm:leading-relaxed tracking-wide relative z-10 flex-grow mt-2 sm:mt-3 line-clamp-3 sm:line-clamp-none" style={{ color: t.subtext }}>{r.text}</p>
+      <p className="font-['Plus_Jakarta_Sans',sans-serif] font-medium text-[11px] sm:text-[17px] leading-snug sm:leading-relaxed tracking-wide relative z-10 flex-grow mt-2 sm:mt-3 line-clamp-3 sm:line-clamp-none text-white/70">{r.text}</p>
     </div>
   );
 }
@@ -545,13 +546,11 @@ export default function ReviewsSection({
                 transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
                 className="w-full max-w-6xl rounded-[32px] p-6 sm:p-10 relative overflow-hidden my-auto cursor-default shadow-2xl border"
                 style={{
-                  background: isDark
-                    ? "linear-gradient(145deg, rgba(18,13,33,0.97) 0%, rgba(10,7,18,0.99) 100%)"
-                    : "#ffffff",
-                  borderColor: isDark ? "rgba(123,44,191,0.25)" : "rgba(123,44,191,0.3)",
-                  boxShadow: isDark
-                    ? "0 30px 80px -10px rgba(0,0,0,0.9), 0 0 40px rgba(123,44,191,0.15)"
-                    : "0 30px 80px -10px rgba(123,44,191,0.25), 0 0 50px rgba(123,44,191,0.15)",
+                  background: "rgba(255, 255, 255, 0.12)",
+                  backdropFilter: "blur(12px)",
+                  WebkitBackdropFilter: "blur(12px)",
+                  borderColor: "rgba(255, 255, 255, 0.2)",
+                  boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.15)",
                 }}
               >
                 <div
@@ -564,10 +563,10 @@ export default function ReviewsSection({
 
                 <div className="flex items-center justify-between gap-4 mb-8 relative z-10 border-b pb-6" style={{ borderColor: isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.08)" }}>
                   <div>
-                    <h3 className="text-2xl sm:text-3xl font-bold font-['Plus_Jakarta_Sans',sans-serif] tracking-wider mb-1" style={{ color: isDark ? "#ffffff" : "#151022" }}>
+                    <h3 className="text-2xl sm:text-3xl font-bold font-['Plus_Jakarta_Sans',sans-serif] tracking-wider mb-1" style={{ color: "white" }}>
                       ALL USER REVIEWS ({total})
                     </h3>
-                    <p className="text-sm font-['Plus_Jakarta_Sans',sans-serif]" style={{ color: isDark ? "#a7a5b3" : "#5d5975" }}>
+                    <p className="text-sm font-['Plus_Jakarta_Sans',sans-serif]" style={{ color: "rgba(255, 255, 255, 0.7)" }}>
                       Read genuine feedback from ModX Lab users.
                     </p>
                   </div>
@@ -625,13 +624,11 @@ export default function ReviewsSection({
                 transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                 className="w-full max-w-lg rounded-[32px] p-7 sm:p-9 relative overflow-hidden cursor-default shadow-2xl border my-auto"
                 style={{
-                  background: isDark
-                    ? "linear-gradient(145deg, rgba(28,20,45,0.97) 0%, rgba(15,10,26,0.99) 100%)"
-                    : "#ffffff",
-                  borderColor: isDark ? "rgba(123,44,191,0.35)" : "rgba(123,44,191,0.38)",
-                  boxShadow: isDark
-                    ? "0 30px 80px -10px rgba(0,0,0,0.9), 0 0 40px rgba(123,44,191,0.2)"
-                    : "0 30px 80px -10px rgba(123,44,191,0.35), 0 0 50px rgba(0,194,178,0.25)",
+                  background: "rgba(255, 255, 255, 0.12)",
+                  backdropFilter: "blur(12px)",
+                  WebkitBackdropFilter: "blur(12px)",
+                  borderColor: "rgba(255, 255, 255, 0.2)",
+                  boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.15)",
                 }}
               >
                 {/* Ambient Glows - Richer and deeper in light theme */}
@@ -739,10 +736,10 @@ export default function ReviewsSection({
                   /* Ultra-Premium Write Review Form */
                   <div className="relative z-10 flex flex-col gap-6">
                     <div className="text-center pb-2">
-                      <h3 className="text-2xl sm:text-3xl font-extrabold font-['Plus_Jakarta_Sans',sans-serif] mb-1" style={{ color: isDark ? "#ffffff" : "#151022" }}>
+                      <h3 className="text-2xl sm:text-3xl font-extrabold font-['Plus_Jakarta_Sans',sans-serif] mb-1" style={{ color: "white" }}>
                         Rate your experience
                       </h3>
-                      <p className="text-sm font-['Plus_Jakarta_Sans',sans-serif] opacity-60" style={{ color: isDark ? "#a7a5b3" : "#5d5975" }}>
+                      <p className="text-sm font-['Plus_Jakarta_Sans',sans-serif] opacity-60" style={{ color: "rgba(255, 255, 255, 0.7)" }}>
                         Your feedback helps us improve and serve you better.
                       </p>
                     </div>

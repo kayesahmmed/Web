@@ -59,12 +59,19 @@ export function StatsSection({ t }: { t: Theme }) {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
             whileHover={{ scale: 1.04, y: -4, boxShadow: "0 20px 40px -10px rgba(125, 82, 253, 0.25)" }}
-            className="relative flex flex-col items-center gap-1 py-10 px-4 rounded-3xl cursor-default"
-            style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}`, willChange: "transform, opacity" }}
+            className="relative flex flex-col items-center gap-1 py-10 px-4 rounded-[24px] cursor-default"
+            style={{ 
+              background: "rgba(255, 255, 255, 0.12)",
+              backdropFilter: "blur(12px)",
+              WebkitBackdropFilter: "blur(12px)",
+              border: "1px solid rgba(255, 255, 255, 0.2)",
+              boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.15)",
+              willChange: "transform, opacity" 
+            }}
           >
             {s.icon}
-            <p className="font-['Plus_Jakarta_Sans',sans-serif] text-2xl sm:text-3xl lg:text-[36px] text-center leading-normal mt-1 transition-colors duration-500" style={{ color: t.text }}>{s.value}</p>
-            <p className="font-['Plus_Jakarta_Sans',sans-serif] font-medium text-[10px] sm:text-xs text-center tracking-[0.1em] transition-colors duration-500" style={{ color: t.subtext }}>{s.label}</p>
+            <p className="font-['Plus_Jakarta_Sans',sans-serif] font-bold text-2xl sm:text-3xl lg:text-[36px] text-center leading-normal mt-1 transition-colors duration-500 text-white">{s.value}</p>
+            <p className="font-['Plus_Jakarta_Sans',sans-serif] font-medium text-[10px] sm:text-xs text-center tracking-[0.1em] transition-colors duration-500 text-white/70">{s.label}</p>
           </motion.div>
         ))}
       </div>
