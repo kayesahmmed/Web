@@ -1,22 +1,35 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import svgPaths from "../imports/Desktop/svg-rb00s3u9xu";
-import { Theme } from "../types";
-
-const holoPaths = [svgPaths.p217f8ec0, svgPaths.p3a837700, svgPaths.p17b36900, svgPaths.p36cb1f80, svgPaths.p3a356a80];
 
 const featuresData = [
-  { color: "#16CF83", shadow: "rgba(22,207,131,.35)",  label: "Anti-Ban",        desc: "Advanced protection system to keep your account safe",   viewBox: "55.8 45.5 28.4 35", paths: [svgPaths.p9056c00] },
-  { color: "#A65FED", shadow: "rgba(166,95,237,.35)",  label: "ESP Radar",       desc: "Real-time enemy position tracking on minimap",           viewBox: "45.2 45.5 49.5 35", paths: [svgPaths.p34658080] },
-  { color: "#FFB11A", shadow: "rgba(255,177,26,.35)",  label: "Auto Aim",        desc: "Smart auto-aim assist for faster eliminations",          viewBox: "60.3 45.5 19.5 35", paths: [svgPaths.p1a290900] },
-  { color: "#00E5D1", shadow: "rgba(0,229,209,.35)",   label: "Speed Boost",     desc: "Enhanced movement speed for tactical advantage",         viewBox: "53 42 34 42",       paths: [svgPaths.p2627a300] },
-  { color: "#EB29A4", shadow: "rgba(235,41,164,.35)",  label: "Aim Lock",        desc: "Lock onto targets with precision accuracy",             viewBox: "0 0 42 42",         paths: holoPaths },
-  { color: "#2790FF", shadow: "rgba(39,144,255,.35)",  label: "Color Holograms", desc: "Multiple hologram colors to suit your style.",          viewBox: "0 0 42 42",         paths: holoPaths },
+  { 
+    label: "Tailored Experiences", 
+    desc: "Every detail is customized to match your unique preferences and style of travel.", 
+    viewBox: "0 0 24 24", 
+    paths: ["M13 10V3L4 14h7v7l9-11h-7z"] 
+  },
+  { 
+    label: "Seamless Logistics", 
+    desc: "From transport to ticketing, we handle everything so you can relax and enjoy.", 
+    viewBox: "0 0 24 24", 
+    paths: ["M13 10V3L4 14h7v7l9-11h-7z"] 
+  },
+  { 
+    label: "Expert Guides", 
+    desc: "Explore with passionate locals who share insider knowledge and hidden gems.", 
+    viewBox: "0 0 24 24", 
+    paths: ["M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2 M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z M23 21v-2a4 4 0 0 0-3-3.87 M16 3.13a4 4 0 0 1 0 7.75"] 
+  },
+  { 
+    label: "24/7 Support", 
+    desc: "We're always available to ensure your journey is smooth and worry-free.", 
+    viewBox: "0 0 24 24", 
+    paths: ["M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2 M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z M23 21v-2a4 4 0 0 0-3-3.87 M16 3.13a4 4 0 0 1 0 7.75"] 
+  }
 ];
 
-function FeatureCard({ f, t, index }: { f: (typeof featuresData)[0]; t: Theme; index: number }) {
+function FeatureCard({ f, index }: { f: (typeof featuresData)[0]; index: number }) {
   const [hovered, setHovered] = useState(false);
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 35 }}
@@ -27,64 +40,53 @@ function FeatureCard({ f, t, index }: { f: (typeof featuresData)[0]; t: Theme; i
       whileTap={{ scale: 0.97 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="relative flex flex-col h-[180px] sm:h-[205px] items-start px-3.5 sm:px-5 py-5 sm:py-8 rounded-2xl cursor-pointer select-none overflow-hidden z-10"
+      className="relative flex flex-col items-start px-5 sm:px-6 py-6 sm:py-8 rounded-[24px] cursor-pointer select-none overflow-hidden z-10"
       style={{
-        background:   t.cardBg,
-        border:       `1px solid ${hovered ? f.color : t.cardBorder}`,
-        boxShadow:    hovered ? `0 12px 40px -8px ${f.shadow}, 0 0 0 1px ${f.color}33` : "0 4px 20px rgba(0,0,0,0.15)",
+        background: "rgba(255, 255, 255, 0.12)",
+        backdropFilter: "blur(12px)",
+        WebkitBackdropFilter: "blur(12px)",
+        border: "1px solid rgba(255, 255, 255, 0.2)",
+        boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.15)",
         willChange: "transform, opacity",
         z: 0
       }}
     >
       <div
-        className="w-[52px] h-[42px] sm:w-[72px] sm:h-[58px] rounded-xl sm:rounded-2xl flex items-center justify-center mb-2.5 shrink-0 relative z-10"
+        className="w-[42px] h-[42px] sm:w-[48px] sm:h-[48px] rounded-[14px] flex items-center justify-center mb-4 shrink-0 relative z-10 bg-white"
         style={{
-          background:  f.color,
-          boxShadow:   hovered ? `0 0 28px 12px ${f.shadow}` : `0 0 18px 8px ${f.shadow}`,
-          transform:   hovered ? "scale(1.12) rotate(-4deg)" : "scale(1) rotate(0deg)",
-          transition:  "all 0.3s ease",
+          boxShadow: hovered ? "0 4px 20px rgba(255,255,255,0.4)" : "0 4px 14px rgba(0,0,0,0.1)",
+          transform: hovered ? "scale(1.08)" : "scale(1)",
+          transition: "all 0.3s ease",
         }}
       >
-        <svg className="w-6 h-6 sm:w-9 sm:h-9" fill="none" viewBox={f.viewBox}>
-          {f.paths.map((p, i) => <path key={i} d={p} fill="#151022" />)}
+        <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="#1e3a8a" viewBox={f.viewBox}>
+          {f.paths.map((p, i) => <path key={i} d={p} />)}
         </svg>
       </div>
-
+      
       <p
-        className="font-['Plus_Jakarta_Sans',sans-serif] font-bold text-sm sm:text-[22px] leading-tight transition-colors duration-200 relative z-10"
-        style={{ color: hovered ? f.color : t.text }}
+        className="font-['Plus_Jakarta_Sans',sans-serif] font-bold text-base sm:text-lg leading-tight transition-colors duration-200 relative z-10 text-white"
       >
         {f.label}
       </p>
-      <p className="font-['Plus_Jakarta_Sans',sans-serif] text-[11px] sm:text-[14px] leading-tight sm:leading-6 mt-1 tracking-wide transition-colors duration-500 relative z-10 line-clamp-2" style={{ color: t.subtext }}>
+      
+      <p className="font-['Plus_Jakarta_Sans',sans-serif] text-[12px] sm:text-[14px] leading-relaxed sm:leading-6 mt-2 tracking-wide transition-colors duration-500 relative z-10 line-clamp-3 text-white/80">
         {f.desc}
       </p>
 
       <div
-        className="absolute inset-0 rounded-2xl pointer-events-none transition-opacity duration-300 z-0"
-        style={{ background: `radial-gradient(circle at 70% 30%, ${f.color}18, transparent 70%)`, opacity: hovered ? 1 : 0 }}
+        className="absolute inset-0 rounded-[24px] pointer-events-none transition-opacity duration-300 z-0"
+        style={{ background: `radial-gradient(circle at 70% 30%, rgba(255,255,255,0.08), transparent 70%)`, opacity: hovered ? 1 : 0 }}
       />
     </motion.div>
   );
 }
 
-export default function FeaturesSection({ isDark, t }: { isDark: boolean; t: Theme }) {
+export default function FeaturesSection() {
   return (
-    <section id="features" className="relative py-16 sm:py-20 px-3 sm:px-8 lg:px-14 max-w-7xl mx-auto">
-      <div
-        className="absolute top-14 left-1/2 -translate-x-1/2 w-full max-w-5xl h-20 rounded-full filter blur-[45px] pointer-events-none z-0 transition-opacity duration-700"
-        style={{
-          background: "linear-gradient(90deg, rgba(0, 136, 255, 0.45) 0%, rgba(123, 44, 191, 0.4) 35%, rgba(0, 229, 209, 0.45) 70%, rgba(255, 0, 128, 0.3) 100%)",
-          opacity: isDark ? 0.35 : 0.55
-        }}
-      />
-
-      <div className="text-center mb-10 relative z-10">
-        <h2 className="text-3xl sm:text-4xl font-black mb-3 tracking-tight" style={{ color: t.text }}>Premium Features</h2>
-        <p className="text-sm font-semibold max-w-xl mx-auto" style={{ color: t.subtext }}>Everything you need to dominate the game.</p>
-      </div>
-      <div className="relative z-10 grid grid-cols-2 gap-3.5 sm:gap-7">
-        {featuresData.map((f, i) => <FeatureCard key={i} f={f} t={t} index={i} />)}
+    <section id="features" className="relative py-16 sm:py-20 px-4 sm:px-8 lg:px-14 max-w-6xl mx-auto">
+      <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+        {featuresData.map((f, i) => <FeatureCard key={i} f={f} index={i} />)}
       </div>
     </section>
   );
